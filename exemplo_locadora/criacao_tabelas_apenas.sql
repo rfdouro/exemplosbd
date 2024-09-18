@@ -15,7 +15,7 @@ create table registrobancario(
 	id serial not null,
 	codinst integer,
 	numreg integer,
-	idcliente integer,
+	idcliente integer unique,
 	constraint pkregistrobancario primary key(id),
 	constraint fkclienteregbancario foreign key (idcliente) 
 			references cliente(id)

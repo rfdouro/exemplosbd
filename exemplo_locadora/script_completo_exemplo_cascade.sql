@@ -94,4 +94,19 @@ values(1,1,'2024-04-01','2024-05-01');
 select * from locacao;
 
 
+/* alteração para inclusão de cascade ao excluir referência */
+alter table locacao 
+	drop constraint fklocacaocliente, drop constraint fklocacaocarro,
+	add constraint fklocacaocliente foreign key (idcliente) references cliente(id)
+		on delete cascade,
+	add constraint fklocacaocarro foreign key (idcarro) references carro(id)
+		on delete cascade;
+
+/*teste de exclusão de carro*/
+delete from carro where id = 1;
+/* exclui também as alocações referentes*/
+select * from locacao;
+
+
+
 
